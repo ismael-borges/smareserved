@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use \App\Http\Controllers\AddressController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +23,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/address', function () {
-    return view('formaddress');
-})->middleware(['auth'])->name('address');
+Route::get('/address', [AddressController::class, 'index'])->middleware(['auth'])->name('address.index');
+Route::post('/address', [AddressController::class, 'register'])->middleware(['auth'])->name('address.register');
+Route::get('/address/create', [AddressController::class, 'create'])->middleware(['auth'])->name('address.create');
+Route::put('/address/{id}', [AddressController::class, 'update'])->middleware(['auth'])->name('address.update');
+Route::get('/address/{id}', [AddressController::class, 'edit'])->middleware(['auth'])->name('address.edit');
+Route::delete('/address/{id}', [AddressController::class, 'delete'])->middleware(['auth'])->name('address.delete');
 
 Route::get('/payment', function () {
     return view('payment');

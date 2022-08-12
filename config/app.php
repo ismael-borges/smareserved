@@ -195,6 +195,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
+        KitLoong\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
+
     ],
 
     /*
