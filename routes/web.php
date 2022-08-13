@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use \App\Http\Controllers\AddressController;
+use \App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,7 @@ Route::put('/address/{id}', [AddressController::class, 'update'])->middleware(['
 Route::get('/address/{id}', [AddressController::class, 'edit'])->middleware(['auth'])->name('address.edit');
 Route::delete('/address/{id}', [AddressController::class, 'delete'])->middleware(['auth'])->name('address.delete');
 
-Route::get('/payment', function () {
-    return view('payment');
-})->middleware(['auth'])->name('payment');
+Route::resource('/payment', PaymentController::class)->middleware(['auth']);
 
 Route::get('/signature', function () {
     return view('signature');

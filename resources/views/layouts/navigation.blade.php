@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('address.index')" :active="request()->routeIs('address.index')">
                         {{ __('Endereço') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('payment')" :active="request()->routeIs('payment')">
+                    <x-nav-link :href="route('payment.index')" :active="request()->routeIs('payment.index')">
                         {{ __('Forma de pagamento') }}
                     </x-nav-link>
                     <x-nav-link :href="route('signature')" :active="request()->routeIs('signature')">
