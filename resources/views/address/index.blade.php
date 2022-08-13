@@ -6,6 +6,9 @@
     </x-slot>
 
     <div class="py-12">
+        <form method="POST" id="form-destroy">
+            @method('DELETE') @csrf
+        </form>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -27,7 +30,7 @@
                                     gray:text-gray-400 gray:border-gray-600 gray:hover:text-white gray:hover:bg-gray-700">
                                     Editar
                                 </a>
-                                <a type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
+                                <a onclick="submitFormDelete(event, {{$value->id}})" class="cursor-pointer py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
                                     bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700
                                     focus:z-10 focus:ring-4 focus:ring-gray-200 gray:focus:ring-gray-700 gray:bg-gray-800
                                     gray:text-gray-400 gray:border-gray-600 gray:hover:text-white gray:hover:bg-gray-700">
@@ -42,3 +45,15 @@
     </div>
 
 </x-app-layout>
+
+<script>
+    function submitFormDelete(event, id) {
+        event.preventDefault();
+
+        if (confirm("Deseja excluir o registro ?")) {
+            let form = document.getElementById('form-destroy');
+            form.action = `address/${id}`;
+            form.submit();
+        }
+    }
+</script>
