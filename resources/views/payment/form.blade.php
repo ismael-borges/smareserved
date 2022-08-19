@@ -12,51 +12,65 @@
                     <form action="{{ $payment ? route('payment.update', $payment->id) : route('payment.store') }}" method="POST">
                         @csrf
                         @if($payment) @method('PUT') @endif
-                        <div class="mb-6">
-                            <label for="digit" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
-                                Número
-                            </label>
-                            <input type="text" id="digit" name="digit" value="{{ old('digit', optional($payment)->digit) }}"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                    focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                     dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+
+                        <div class="grid grid-cols-3">
+                            <div class="mb-6">
+                                <label for="nickname" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
+                                    Apelido
+                                </label>
+                                <input type="text" id="nickname" name="nickname" value="{{ old('nickname', optional($payment)->nickname) }}"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                         dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                            </div>
+                            <div class="ml-3 mb-6">
+                                <label for="digit" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
+                                    Número
+                                </label>
+                                <input type="number" id="digit" name="digit" value="{{ old('digit', optional($payment)->digit) }}"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                         dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                            </div>
+                            <div class="ml-3 mb-6">
+                                <label for="mounth" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Mês</label>
+                                <input type="number" id="mounth" name="mounth" value="{{ old('mounth', optional($payment)->mounth) }}"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
+                                       rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                        dark:focus:border-blue-500" required="">
+                            </div>
                         </div>
-                        <div class="mb-6">
-                            <label for="mounth" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Mês</label>
-                            <input type="text" id="mounth" name="mounth" value="{{ old('mounth', optional($payment)->mounth) }}"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
-                                   rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                                   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                                    dark:focus:border-blue-500" required="">
-                        </div>
-                        <div class="mb-6">
-                            <label for="yearcard" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Ano</label>
-                            <input type="text" id="yearcard" name="yearcard" value="{{ old('yearcard', optional($payment)->yearcard) }}"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
-                                   rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                                   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                                    dark:focus:border-blue-500" required="">
-                        </div>
-                        <div class="mb-6">
-                            <label for="nameprinted" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Nome impresso</label>
-                            <input type="text" id="nameprinted" name="nameprinted" value="{{ old('nameprinted', optional($payment)->nameprinted) }}"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
-                                   rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                                   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                                    dark:focus:border-blue-500" required="">
-                        </div>
-                        <div class="mb-6">
-                            <label for="cvv" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">CVV</label>
-                            <input type="text" id="cvv" name="cvv" value="{{ old('cvv', optional($payment)->cvv) }}"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
-                                   rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                                   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                                    dark:focus:border-blue-500" required="">
+                        <div class="grid grid-cols-3">
+                            <div class="mb-6">
+                                <label for="yearcard" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Ano</label>
+                                <input type="number" id="yearcard" name="yearcard" value="{{ old('yearcard', optional($payment)->yearcard) }}"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
+                                       rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                        dark:focus:border-blue-500" required="">
+                            </div>
+                            <div class="ml-3 mb-6">
+                                <label for="nameprinted" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Nome impresso</label>
+                                <input type="text" id="nameprinted" name="nameprinted" value="{{ old('nameprinted', optional($payment)->nameprinted) }}"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
+                                       rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                        dark:focus:border-blue-500" required="">
+                            </div>
+                            <div class="ml-3 mb-6">
+                                <label for="cvv" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">CVV</label>
+                                <input type="number" id="cvv" name="cvv" value="{{ old('cvv', optional($payment)->cvv) }}"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
+                                       rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                        dark:focus:border-blue-500" required="">
+                            </div>
                         </div>
                         <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
                                 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5
-                                text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cadastrar</button>
+                                text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
                     </form>
                 </div>
             </div>

@@ -15,12 +15,13 @@ class CreatePaymentTable extends Migration
     {
         Schema::create('payment', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('digit', 45)->nullable();
-            $table->string('mounth', 45)->nullable();
-            $table->string('yearcard', 45)->nullable();
-            $table->string('nameprinted', 45)->nullable();
-            $table->string('cvv', 45)->nullable();
-            $table->unsignedBigInteger('user_id')->nullable()->index('fkpaymentusers_idx');
+            $table->string('digit', 45);
+            $table->string('mounth', 45);
+            $table->string('yearcard', 45);
+            $table->string('nameprinted', 45);
+            $table->string('cvv', 45);
+            $table->string('nickname', 45);
+            $table->unsignedBigInteger('user_id')->index('fkpaymentusers_idx');
         });
     }
 

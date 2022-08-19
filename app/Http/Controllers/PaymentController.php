@@ -15,7 +15,6 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = $this->paymentRepository->getAll();
-
         return view('payment.index', compact('payments'));
     }
 
@@ -27,10 +26,9 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->only('digit', 'mounth', 'yearcard', 'nameprinted', 'cvv');
+        $data = $request->only('digit', 'mounth', 'yearcard', 'nameprinted', 'cvv', 'nickname');
         $data['user_id'] = Auth::id();
         $this->paymentRepository->create($data);
-
         return redirect()->route('payment.index');
     }
 
@@ -49,11 +47,10 @@ class PaymentController extends Controller
             return redirect()->route('payment.index');
         }
 
-        $data = $request->only('digit', 'mounth', 'yearcard', 'nameprinted', 'cvv');
+        $data = $request->only('digit', 'mounth', 'yearcard', 'nameprinted', 'cvv', 'nickname');
         $data['user_id'] = Auth::id();
 
         $payment->update($data);
-
         return redirect()->route('payment.index');
     }
 

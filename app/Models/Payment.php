@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $yearcard
  * @property string $nameprinted
  * @property string $cvv
+ * @property string $nickname
  * @property User $user
  */
 class Payment extends Model
@@ -26,7 +27,7 @@ class Payment extends Model
     /**
      * @var array
      */
-    protected $fillable = ['digit', 'mounth', 'yearcard', 'nameprinted', 'cvv', 'user_id'];
+    protected $fillable = ['digit', 'mounth', 'yearcard', 'nameprinted', 'cvv', 'nickname', 'user_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

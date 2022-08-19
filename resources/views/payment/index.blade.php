@@ -20,10 +20,13 @@
                     @foreach($payments as $payment)
                         <div class="block">
                             <div class="m-3 p-6 bg-white rounded-lg border border-gray-200 shadow-md gray:bg-gray-800 gray:border-gray-700">
-                                <p>{{$payment->nameprinted}}</p>
-                                <p>Numero: {{$payment->digit}}</p>
-                                <p>Mês de vencimento: {{$payment->mounth}}</p>
-                                <p>Ano de vencimento: {{$payment->yearcard}}</p>
+                                <p class="mb-1">
+                                    <svg style="float: left; margin-right: 4px;" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path></svg>
+                                    {{$payment->nickname}}
+                                </p>
+                                <p class="mb-1">Numero: {{$payment->digit}}</p>
+                                <p class="mb-1">Mês de vencimento: {{$payment->mounth}}</p>
+                                <p class="mb-1">Ano de vencimento: {{$payment->yearcard}}</p>
                                 <p class="mt-3">
                                     <a href="{{route('payment.edit', $payment->id)}}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none
                                     bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700

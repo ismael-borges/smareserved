@@ -14,17 +14,18 @@ class AddressController extends Controller
 
     public function index()
     {
-        $address = $this->addressRepository->getAll();
+        $addresses = $this->addressRepository->getAll();
 
-        return view('address.index', compact('address'));
+        return view('address.index', compact('addresses'));
     }
 
     public function create()
     {
-        return view('address.create');
+        $address = null;
+        return view('address.form', compact('address'));
     }
 
-    public function register(Request $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
@@ -37,7 +38,7 @@ class AddressController extends Controller
     {
         $address = $this->addressRepository->find($id);
 
-        return view('address.edit', compact('address'));
+        return view('address.form', compact('address'));
     }
 
     public function update(Request $request, $id)
@@ -54,7 +55,7 @@ class AddressController extends Controller
         return redirect()->route('address.index');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         if (!$address = $this->addressRepository->find($id)) {
             return redirect()->route('address.index');
