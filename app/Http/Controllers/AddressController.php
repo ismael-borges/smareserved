@@ -27,9 +27,10 @@ class AddressController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['user_id'] = Auth::id();
-        $this->addressRepository->create($data);
+        $data = $request->only('nickname', 'cep', 'digit', 'complement', 'superscription',
+            'district', 'city', 'state', 'reference');
+        $this->addressRepository->create($data['nickname'], $data['cep'], $data['digit'], $data['complement'],
+            $data['superscription'], $data['district'], $data['city'], $data['state'], $data['reference'], Auth::id());
 
         return redirect()->route('address.index');
     }
@@ -48,7 +49,8 @@ class AddressController extends Controller
             return redirect()->route('address.index');
         }
 
-        $data = $request->all();
+        $data = $request->only('nickname', 'cep', 'digit', 'complement', 'superscription',
+            'district', 'city', 'state', 'reference');
         $data['user_id'] = Auth::id();
         $address->update($data);
 
@@ -57,12 +59,7 @@ class AddressController extends Controller
 
     public function destroy($id)
     {
-        if (!$address = $this->addressRepository->find($id)) {
-            return redirect()->route('address.index');
-        }
-
-        $address->delete();
-
+        $this->addressRepository->delete($id);
         return redirect()->route('address.index');
     }
 }

@@ -3,30 +3,47 @@
 namespace App\Repository;
 
 use App\Models\Address;
+use Illuminate\Support\Facades\DB;
 
 class AddressRepository
 {
-    public function __construct(
-        private Address $address
-    ){}
-
     public function getAll()
     {
-        return $this->address->all();
+        return Address::all();
     }
 
     public function find($id)
     {
-        return $this->address->find($id);
+        return Address::find($id);
     }
 
-    public function create($data)
+    public function create($nickname, $cep, $digit, $complement, $superscription, $district, $city,
+                           $state, $reference, $user_id)
     {
-        $this->address->create($data);
+        try {
+            DB::beginTransaction();
+
+            $address = new Address;
+            $address->nickname = $nickname;
+            $address->cep = $cep;
+            $address->digit = $digit;
+            $address->complement = $complement;
+            $address->superscription = $superscription;
+            $address->district = $district;
+            $address->city = $city;
+            $address->state = $state;
+            $address->reference = $reference;
+            $address->user_id = $user_id;
+            $address->save();
+
+            DB::commit();
+        } catch (\Exception) {
+            DB::rollBack();
+        }
     }
 
-    public function update($data)
+    public function delete($id)
     {
-        $this->address->update($data);
+        return Address::find($id)->delete();
     }
 }

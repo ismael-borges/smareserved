@@ -15,8 +15,8 @@
                         <div class="grid grid-cols-3 mb-6 products">
                             <div>
                                 <label for="products" class="block mb-2 text-sm
-                                font-medium text-gray-900 dark:text-gray-400">
-                                    Produtos
+                                font-medium text-black-900 dark:black-gray-400">
+                                    Produtos <span style="color: red">*</span>
                                 </label>
                                 <select {{!isset($productsSelected) ? 'required' : ''}} id="products"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
@@ -31,8 +31,8 @@
                             </div>
                             <div class="ml-6">
                                 <label for="quantity" class="block mb-2 text-sm font-medium
-                                   text-gray-900 dark:text-gray-400">
-                                    Quantidade
+                                   text-black-900 dark:text-black-400">
+                                    Quantidade <span style="color: red">*</span>
                                 </label>
                                 <input type="number" id="quantity"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
@@ -47,17 +47,24 @@
 
                             @if(isset($productsSelected))
                                 @foreach($productsSelected as $productSelected)
-                                <div class="mt-4">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                                        Produto: {{$productSelected['products']['name']}}
+                                <div class="mt-4 mr-3">
+                                    <label for="products" class="block mb-2 text-sm
+                                font-medium text-black-900 dark:text-black-400">
+                                        Produto <span style="color: red">*</span>
                                     </label>
+                                    <input value="{{$productSelected['products']['name']}}" type="text" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                    focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                     dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <input name="products[]" value="{{$productSelected['products']['id']}}" type="hidden">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                                        Quantidade: {{$productSelected['quantity']}}
+                                    <label class="block mb-2 text-sm font-medium text-black-900 dark:text-black-400">
+                                        Quantidade <span style="color: red">*</span>
                                     </label>
-                                    <input type="hidden" name="quantity[{{$productSelected['products']['id']}}]" value="{{$productSelected['quantity']}}">
+                                    <input type="number" name="quantity[{{$productSelected['products']['id']}}]" value="{{$productSelected['quantity']}}"
+                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                    focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                     dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                                        Ações: <a href="#" class="remove_field font-medium text-blue-600 dark:text-blue-500 hover:underline">Remover</a>
+                                        <a href="#" class="remove_field font-medium text-blue-600 dark:text-blue-500 hover:underline">Remover item</a>
                                     </label>
                                 </div>
                                 @endforeach
@@ -67,36 +74,36 @@
                         <div class="mb-6">
 
                             <label for="quantity" class="block mb-2 text-sm font-medium
-                                   text-gray-900 dark:text-gray-400">
-                                Peridiocidade
+                                   text-black-900 dark:text-black-400">
+                                Peridiocidade <span style="color: red">*</span>
                             </label>
 
                             <div class="flex items-center mb-4">
-                                <input id="recurrence-weekly" type="radio" name="recurrence" value="1"
+                                <input id="recurrence-weekly" type="radio" name="recurrence_type" value="1"
                                        class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600
                                         dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
                                     {{ isset($signature) && $signature->recurrence_type === 1 ? 'checked' : '' }}>
-                                <label for="recurrence-weekly" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <label for="recurrence-weekly" class="block ml-2 text-sm font-medium text-black-900 dark:text-black-300">
                                     Semanalmente
                                 </label>
                             </div>
 
                             <div class="flex items-center mb-4">
-                                <input id="recurrence-mounth" type="radio" name="recurrence" value="2"
+                                <input id="recurrence-mounth" type="radio" name="recurrence_type" value="2"
                                        class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600
                                        dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
                                     {{ isset($signature) && $signature->recurrence_type === 2 ? 'checked' : '' }}>
-                                <label for="recurrence-mounth" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <label for="recurrence-mounth" class="block ml-2 text-sm font-medium text-black-900 dark:text-black-300">
                                     Mensalmente
                                 </label>
                             </div>
 
                             <div class="flex items-center mb-4">
-                                <input id="recurrence-biweekly" type="radio" name="recurrence" value="3"
+                                <input id="recurrence-biweekly" type="radio" name="recurrence_type" value="3"
                                        class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600
                                         dark:bg-gray-700 dark:border-gray-600"
                                     {{ isset($signature) && $signature->recurrence_type === 3 ? 'checked' : '' }}>
-                                <label for="recurrence-biweekly" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <label for="recurrence-biweekly" class="block ml-2 text-sm font-medium text-black-900 dark:text-black-300">
                                     Quinzenalmente
                                 </label>
                             </div>
@@ -107,8 +114,8 @@
                             <div>
                                 <label for="payment"
                                        class="block mb-2 text-sm font-medium
-                                   text-gray-900 dark:text-gray-400">Forma de pagamento</label>
-                                <select id="payment" name="payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                   text-black-900 dark:text-black-400">Forma de pagamento <span style="color: red">*</span></label>
+                                <select required id="payment" name="payment_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="">Selecione...</option>
                                     @foreach($payments as $payment)
                                         <option value="{{$payment->id}}" {{ isset($paymentSelected) && $paymentSelected['id'] === $payment->id ? 'selected' : ''}}>{{$payment->nickname}}</option>
@@ -119,8 +126,8 @@
                             <div class="ml-6">
                                 <label for="address"
                                        class="block mb-2 text-sm font-medium
-                                   text-gray-900 dark:text-gray-400">Endereço</label>
-                                <select id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                   text-black-900 dark:text-black-400">Endereço <span style="color: red">*</span></label>
+                                <select required id="address" name="address_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="">Selecione...</option>
                                     @foreach($addresses as $address)
                                         <option value="{{$address->id}}" {{isset($addressSelected) && $addressSelected['id'] === $address->id ? 'selected' : ''}}>{{$address->nickname}}</option>
@@ -159,11 +166,12 @@
                 }
 
                 $(wrapper).append('<div class="mt-4">' +
-                    `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Produto: ${$('#products option:selected').text()}</label>` +
+                    `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Produto <span style="color: red">*</span></label>` +
                     '<input name="products[]" value="'+$('#products').val()+'" type="hidden">' +
-                    `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Quantidade: ${$('#quantity').val()}</label>` +
-                    '<input type="hidden" name="quantity['+$('#products').val()+']" value="'+$('#quantity').val()+'">' +
-                    `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Ações: <a href="#" class="remove_field font-medium text-blue-600 dark:text-blue-500 hover:underline">Remover</a></label>` +
+                    '<input value="'+$('#products option:selected').text()+'" type="text" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">' +
+                    `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Quantidade <span style="color: red">*</span></label>` +
+                    '<input type="text" name="quantity['+$('#products').val()+']" value="'+$('#quantity').val()+'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>' +
+                    `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"><a href="#" class="remove_field font-medium text-blue-600 dark:text-blue-500 hover:underline">Remover item</a></label>` +
                     '</div>');
             });
             $(wrapper).on("click",".remove_field", function(e){

@@ -27,8 +27,8 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $data = $request->only('digit', 'mounth', 'yearcard', 'nameprinted', 'cvv', 'nickname');
-        $data['user_id'] = Auth::id();
-        $this->paymentRepository->create($data);
+        $this->paymentRepository->create($data['digit'], $data['mounth'], $data['yearcard'],
+            $data['nameprinted'], $data['cvv'], $data['nickname'], Auth::id());
         return redirect()->route('payment.index');
     }
 

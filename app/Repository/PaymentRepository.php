@@ -3,31 +3,43 @@
 namespace App\Repository;
 
 use App\Models\Payment;
+use Illuminate\Support\Facades\DB;
 
 class PaymentRepository
 {
-    public function __construct(
-        private Payment $payment
-    ){}
-
     public function getAll()
     {
-        return $this->payment->all();
+        return Payment::all();
     }
 
-    public function create(array $data)
+    public function create($digit, $mounth, $yearcard, $nameprinted, $cvv, $nickname, $user_id)
     {
-        return $this->payment->create($data);
+        try {
+            DB::beginTransaction();
+
+            $payment = new Payment;
+            $payment->digit = $digit;
+            $payment->mounth = $mounth;
+            $payment->yearcard = $yearcard;
+            $payment->nameprinted = $nameprinted;
+            $payment->cvv = $cvv;
+            $payment->nickname = $nickname;
+            $payment->user_id = $user_id;
+            $payment->save();
+
+            DB::commit();
+        } catch (\Exception) {
+            DB::rollBack();
+        }
     }
 
     public function find($id)
     {
-        return $this->payment->find($id);
+        return Payment::find($id);
     }
 
     public function delete($id)
     {
-        $payment = $this->payment->find($id);
-        return $payment->delete();
+        return Payment::find($id)->delete();
     }
 }

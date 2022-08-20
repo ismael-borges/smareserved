@@ -16,7 +16,7 @@
                         <div class="grid grid-cols-3">
                             <div class="mb-6">
                                 <label for="nickname" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
-                                    Apelido
+                                    Apelido <span style="color: red">*</span>
                                 </label>
                                 <input type="text" id="nickname" name="nickname" value="{{ old('nickname', optional($payment)->nickname) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
@@ -25,33 +25,48 @@
                             </div>
                             <div class="ml-3 mb-6">
                                 <label for="digit" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
-                                    Número
+                                    Número <span style="color: red">*</span>
                                 </label>
                                 <input type="number" id="digit" name="digit" value="{{ old('digit', optional($payment)->digit) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
                                         focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                                          dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                                <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                    Somente números
+                                </p>
                             </div>
                             <div class="ml-3 mb-6">
-                                <label for="mounth" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Mês</label>
+                                <label for="mounth" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
+                                    Mês <span style="color: red">*</span>
+                                </label>
                                 <input type="number" id="mounth" name="mounth" value="{{ old('mounth', optional($payment)->mounth) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
                                        rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
                                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
                                         dark:focus:border-blue-500" required="">
+                                <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                    Somente dois digitos
+                                </p>
                             </div>
                         </div>
                         <div class="grid grid-cols-3">
                             <div class="mb-6">
-                                <label for="yearcard" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Ano</label>
+                                <label for="yearcard" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
+                                    Ano <span style="color: red">*</span>
+                                </label>
                                 <input type="number" id="yearcard" name="yearcard" value="{{ old('yearcard', optional($payment)->yearcard) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
                                        rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
                                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
                                         dark:focus:border-blue-500" required="">
+                                <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                    Somente dois digitos
+                                </p>
                             </div>
                             <div class="ml-3 mb-6">
-                                <label for="nameprinted" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Nome impresso</label>
+                                <label for="nameprinted" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
+                                    Nome impresso <span style="color: red">*</span>
+                                </label>
                                 <input type="text" id="nameprinted" name="nameprinted" value="{{ old('nameprinted', optional($payment)->nameprinted) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
                                        rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
@@ -59,7 +74,9 @@
                                         dark:focus:border-blue-500" required="">
                             </div>
                             <div class="ml-3 mb-6">
-                                <label for="cvv" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">CVV</label>
+                                <label for="cvv" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
+                                    CVV <span style="color: red">*</span>
+                                </label>
                                 <input type="number" id="cvv" name="cvv" value="{{ old('cvv', optional($payment)->cvv) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm
                                        rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700

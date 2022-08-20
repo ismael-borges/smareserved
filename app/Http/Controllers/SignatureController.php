@@ -36,25 +36,9 @@ class SignatureController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->only('products', 'quantity', 'recurrence',
-            'payment', 'address', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday');
-
-        $signatureId = $this->signatureRepository->create(
-            $data['recurrence'],
-            $data['payment'],
-            $data['address'],
-            Auth::id()
-        );
-
-        foreach ($data['products'] as $productId) {
-            $quantity = $data['quantity'][$productId];
-
-            $this->signatureProductRepository->create(
-                $signatureId,
-                $productId,
-                $quantity
-            );
-        }
+        $data = $request->only('products', 'quantity', 'recurrence', 'payment', 'address');
+        $signatureId = $this->signatureRepository->create($data['recurrence'], $data['payment'], $data['address'], Auth::id());
+        $this->signatureProductRepository->save($data['products'], $data['quantity'], $signatureId, 'create');
 
         return redirect()->route('dashboard.index');
     }
@@ -84,17 +68,25 @@ class SignatureController extends Controller
         $signature = $this->signatureRepository->find($id);
         $productsSelected = $this->signatureProductRepository->find($id);
 
-        $data = $request->only('products', 'quantity', 'recurrence',
-            'payment', 'address', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'fgstatus');
+        $data = $request->only('products', 'quantity', 'recurrence_type', 'payment_id', 'address_id');
         $data['user_id'] = Auth::id();
 
-        $productsDeleted = $this->signatureServices->checkProducts($data, $productsSelected);
-        dd($productsDeleted);
+        $checkedProducts = $this->signatureServices->checkProducts($data, $productsSelected);
+        $this->destroy($id, $checkedProducts['delected']);
+        $this->signatureProductRepository->save($checkedProducts['added'], $data['quantity'], $id, 'create');
+        $this->signatureProductRepository->save($data['products'], $data['quantity'], $id, 'update');
+
         $signature->update($data);
 
-        return redirect()->route('dashboard.index');
+        return back();
     }
 
-    public function destroy($id)
-    {}
+    public function destroy($signatureId, $productsDeleted)
+    {
+        if (!empty($productsDeleted)) {
+            foreach ($productsDeleted as $productId) {
+                $this->signatureProductRepository->delete($signatureId, $productId);
+            }
+        }
+    }
 }

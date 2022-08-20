@@ -29,12 +29,8 @@ class SignatureRepository
         return $data;
     }
 
-    public function create(
-        int $recurrenceId,
-        int $paymentId,
-        int $addressId,
-        int $userId
-    ) {
+    public function create(int $recurrenceId, int $paymentId, int $addressId, int $userId)
+    {
         try {
             DB::beginTransaction();
 
