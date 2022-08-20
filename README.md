@@ -17,6 +17,8 @@ Consiste em um sistema de assinaturas recorrentes para uma rede de mercados.
 - Após clonar execute sail composer install para instalar as dependências 
 - Execute o comando sail artisan migrate
 - Execute o comando sail artisan db:seed
+- Execute o comando sail up
+- Execute o comando npm run dev
 - Após rodar o seed você pode acessar o sistema com os seguintes dados:
 - User: dev@moat.ai
 - Pass: 123456789
