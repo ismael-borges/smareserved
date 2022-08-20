@@ -8,6 +8,7 @@ use App\Repository\PaymentRepository;
 use App\Repository\ProductRepository;
 use App\Repository\SignatureProductRepository;
 use App\Repository\SignatureRepository;
+use App\Services\RecurrenceServices;
 use App\Services\SignatureServices;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,8 @@ class SignatureController extends Controller
         private ProductRepository $productRepository,
         private SignatureRepository $signatureRepository,
         private SignatureProductRepository $signatureProductRepository,
-        private SignatureServices $signatureServices
+        private SignatureServices $signatureServices,
+        private RecurrenceServices $recurrenceServices
     ) {}
 
     public function index()
@@ -70,6 +72,7 @@ class SignatureController extends Controller
 
         $data = $request->only('products', 'quantity', 'recurrence_type', 'payment_id', 'address_id');
         $data['user_id'] = Auth::id();
+        $data['dtnextexecution'] = $this->recurrenceServices->chooseRecurrence($data['recurrence_type']);
 
         $checkedProducts = $this->signatureServices->checkProducts($data, $productsSelected);
         $this->destroy($id, $checkedProducts['delected']);
@@ -78,7 +81,7 @@ class SignatureController extends Controller
 
         $signature->update($data);
 
-        return back();
+        return redirect()->route('dashboard.index');
     }
 
     public function destroy($signatureId, $productsDeleted)
