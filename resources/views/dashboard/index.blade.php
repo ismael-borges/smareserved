@@ -20,17 +20,9 @@
                     @endif
                     @foreach($signatures['data'] as $signature)
                         <div style="background-color: #f9f9f9;" class="mt-5 mr-2 block rounded-lg shadow-lg bg-white max-w-sm text-center">
-                            <div class="flex justify-between py-3 px-6 border-b border-gray-300">
+                            <div class="flex justify-center py-3 px-6 border-b border-gray-300">
                                 <div>
                                     Assinatura #{{$signature->id}}
-                                </div>
-                                <div>
-                                    <span class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">
-                                        <a href="#" class="no-underline font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                           onclick="handleChangeToggle(event, this, {{$signature->id}}, {{$signature->fgstatus}})">
-                                            {{$signature->fgstatus === 1 ? 'Desativar' : 'Ativar'}}
-                                        </a>
-                                    </span>
                                 </div>
                             </div>
                             <div class="p-6">

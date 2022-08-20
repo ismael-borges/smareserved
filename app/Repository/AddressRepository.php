@@ -3,13 +3,14 @@
 namespace App\Repository;
 
 use App\Models\Address;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AddressRepository
 {
     public function getAll()
     {
-        return Address::all();
+        return Address::where('user_id', Auth::id())->get();
     }
 
     public function find($id)

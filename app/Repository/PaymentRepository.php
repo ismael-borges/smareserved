@@ -3,13 +3,14 @@
 namespace App\Repository;
 
 use App\Models\Payment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PaymentRepository
 {
     public function getAll()
     {
-        return Payment::all();
+        return Payment::where('user_id', Auth::id())->get();
     }
 
     public function create($digit, $mounth, $yearcard, $nameprinted, $cvv, $nickname, $user_id)

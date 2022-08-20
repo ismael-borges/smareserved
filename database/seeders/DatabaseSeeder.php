@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//         \App\Models\User::factory()->create([
-//             'name' => 'Ismael Borges',
-//             'email' => 'ismael@live.com',
-//             'password' => bcrypt('123456789'),
-//         ]);
+         \App\Models\User::factory()->create([
+             'name' => 'Moat.ai',
+             'email' => 'dev@moat.ai',
+             'password' => bcrypt('123456789'),
+         ]);
 
         \App\Models\Products::factory(100)->create();
     }

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard.index') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <img width="100" src="https://theme.zdassets.com/theme_assets/2373929/60d7ecc79c32c163a50b121b5905ec19254b0436.png"/>
                     </a>
                 </div>
 
@@ -16,13 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('address.index')" :active="request()->routeIs('address.index')">
-                        {{ __('Endereço') }}
+                        {{ __('Endereços') }}
                     </x-nav-link>
                     <x-nav-link :href="route('payment.index')" :active="request()->routeIs('payment.index')">
-                        {{ __('Forma de pagamento') }}
+                        {{ __('Formas de pagamento') }}
                     </x-nav-link>
                     <x-nav-link :href="route('signature.index')" :active="request()->routeIs('signature.index')">
-                        {{ __('Assinatura') }}
+                        {{ __('Cadastro de Assinatura') }}
                     </x-nav-link>
                 </div>
             </div>
