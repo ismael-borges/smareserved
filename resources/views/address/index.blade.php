@@ -17,6 +17,12 @@
                        href="{{route('address.create')}}">
                         Inserir novo endereço
                     </a>
+
+                    @if(count($addresses) === 0)
+                        <p class="mt-7 text-lg font-medium text-gray-900 dark:text-black">
+                            Você não possui endereços cadastrados.
+                        </p>
+                    @endif
                     @foreach($addresses as $address)
                         <div class="block">
                             <div class="m-3 p-6 bg-white rounded-lg border border-gray-200 shadow-md gray:bg-gray-800 gray:border-gray-700">

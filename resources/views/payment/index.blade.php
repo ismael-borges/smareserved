@@ -17,6 +17,13 @@
                        href="{{route('payment.create')}}">
                         Inserir forma de pagamento
                     </a>
+
+                    @if(count($payments) === 0)
+                        <p class="mt-7 text-lg font-medium text-gray-900 dark:text-black">
+                            Você não possui formas de pagamentos cadastradas.
+                        </p>
+                    @endif
+
                     @foreach($payments as $payment)
                         <div class="block">
                             <div class="m-3 p-6 bg-white rounded-lg border border-gray-200 shadow-md gray:bg-gray-800 gray:border-gray-700">

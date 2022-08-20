@@ -13,6 +13,11 @@
                     <input type="hidden" name="fgstatus" id="fgstatus"/>
                 </form>
                 <div class="flex justify-between flex-wrap p-6 bg-white border-b border-gray-200">
+                    @if(empty($signatures['data']))
+                        <p class="text-lg font-medium text-gray-900 dark:text-black">
+                            Você não possui assinaturas.
+                        </p>
+                    @endif
                     @foreach($signatures['data'] as $signature)
                         <div style="background-color: #f9f9f9;" class="mt-5 mr-2 block rounded-lg shadow-lg bg-white max-w-sm text-center">
                             <div class="flex justify-between py-3 px-6 border-b border-gray-300">
