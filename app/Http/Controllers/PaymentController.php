@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdatePaymentFormRequest;
 use App\Repository\PaymentRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
@@ -24,7 +24,7 @@ class PaymentController extends Controller
         return view('payment.form', compact('payment'));
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdatePaymentFormRequest $request)
     {
         $data = $request->only('digit', 'mounth', 'yearcard', 'nameprinted', 'cvv', 'nickname');
         $this->paymentRepository->create($data['digit'], $data['mounth'], $data['yearcard'],
@@ -41,7 +41,7 @@ class PaymentController extends Controller
         return view('payment.form', compact('payment'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdatePaymentFormRequest $request, $id)
     {
         if (!$payment = $this->paymentRepository->find($id)) {
             return redirect()->route('payment.index');

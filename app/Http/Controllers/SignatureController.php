@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateSignatureFormRequest;
 use App\Repository\AddressRepository;
 use App\Repository\PaymentRepository;
 use App\Repository\ProductRepository;
 use App\Repository\SignatureProductRepository;
 use App\Repository\SignatureRepository;
 use App\Services\SignatureServices;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SignatureController extends Controller
@@ -34,10 +34,10 @@ class SignatureController extends Controller
     public function create()
     {}
 
-    public function store(Request $request)
+    public function store(StoreUpdateSignatureFormRequest $request)
     {
-        $data = $request->only('products', 'quantity', 'recurrence', 'payment', 'address');
-        $signatureId = $this->signatureRepository->create($data['recurrence'], $data['payment'], $data['address'], Auth::id());
+        $data = $request->only('products', 'quantity', 'recurrence_type', 'payment_id', 'address_id');
+        $signatureId = $this->signatureRepository->create($data['recurrence_type'], $data['payment_id'], $data['address_id'], Auth::id());
         $this->signatureProductRepository->save($data['products'], $data['quantity'], $signatureId, 'create');
 
         return redirect()->route('dashboard.index');
@@ -63,7 +63,7 @@ class SignatureController extends Controller
         ]));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateSignatureFormRequest $request, $id)
     {
         $signature = $this->signatureRepository->find($id);
         $productsSelected = $this->signatureProductRepository->find($id);

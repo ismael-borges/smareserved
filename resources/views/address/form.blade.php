@@ -4,11 +4,21 @@
             {{ __('Cadastrar endereço') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    @if($errors->any())
+                        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                            <span class="font-medium">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                            </span>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ $address ? route('address.update', $address->id) : route('address.store') }}">
                         @csrf
                         @if($address) @method('PUT') @endif
@@ -21,7 +31,7 @@
                                 <input type="text" id="nickname" name="nickname" value="{{ old('nickname', optional($address)->nickname) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
                 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             </div>
                             <div class="ml-3 mb-6">
                                 <label for="cep" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">

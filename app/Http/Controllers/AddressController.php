@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateAddressFormRequest;
 use App\Repository\AddressRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
@@ -25,7 +25,7 @@ class AddressController extends Controller
         return view('address.form', compact('address'));
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateAddressFormRequest $request)
     {
         $data = $request->only('nickname', 'cep', 'digit', 'complement', 'superscription',
             'district', 'city', 'state', 'reference');
@@ -42,7 +42,7 @@ class AddressController extends Controller
         return view('address.form', compact('address'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateAddressFormRequest $request, $id)
     {
 
         if (!$address = $this->addressRepository->find($id)) {
