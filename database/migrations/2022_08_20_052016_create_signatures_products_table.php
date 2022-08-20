@@ -16,6 +16,8 @@ class CreateSignaturesProductsTable extends Migration
         Schema::create('signatures_products', function (Blueprint $table) {
             $table->unsignedInteger('signature_id');
             $table->unsignedInteger('product_id')->index('FKSIGNATUREPRODUCTSPRODUCTS_idx');
+            $table->integer('quantity');
+            $table->timestamps();
 
             $table->primary(['signature_id', 'product_id']);
         });

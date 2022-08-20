@@ -15,11 +15,12 @@ class CreateSignaturesTable extends Migration
     {
         Schema::create('signatures', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('fgstatus');
             $table->unsignedInteger('payment_id')->index('FKSIGNATUREPAYMENT_idx');
             $table->unsignedInteger('address_id')->index('FKSIGNATUREADDRESS_idx');
-            $table->unsignedInteger('recurrence_id')->index('FKSIGNATURERECURRENCE_idx');
             $table->unsignedBigInteger('user_id')->index('FKSIGNATUREUSER_idx');
+            $table->tinyInteger('fgstatus');
+            $table->integer('recurrence_type');
+            $table->timestamp('dtnextexecution');
             $table->timestamps();
         });
     }

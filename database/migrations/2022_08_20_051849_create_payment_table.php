@@ -22,6 +22,7 @@ class CreatePaymentTable extends Migration
             $table->string('cvv', 45);
             $table->string('nickname', 45);
             $table->unsignedBigInteger('user_id')->index('fkpaymentusers_idx');
+            $table->timestamps();
         });
     }
 

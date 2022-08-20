@@ -16,7 +16,6 @@ class AddForeignKeysToSignaturesTable extends Migration
         Schema::table('signatures', function (Blueprint $table) {
             $table->foreign(['address_id'], 'FKSIGNATUREADDRESS')->references(['id'])->on('address')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['payment_id'], 'FKSIGNATUREPAYMENT')->references(['id'])->on('payment')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->foreign(['recurrence_id'], 'FKSIGNATURERECURRENCE')->references(['id'])->on('recurrence')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['user_id'], 'FKSIGNATUREUSER')->references(['id'])->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
@@ -31,7 +30,6 @@ class AddForeignKeysToSignaturesTable extends Migration
         Schema::table('signatures', function (Blueprint $table) {
             $table->dropForeign('FKSIGNATUREADDRESS');
             $table->dropForeign('FKSIGNATUREPAYMENT');
-            $table->dropForeign('FKSIGNATURERECURRENCE');
             $table->dropForeign('FKSIGNATUREUSER');
         });
     }
