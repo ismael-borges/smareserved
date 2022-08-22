@@ -2,8 +2,9 @@
 
 ## Sobre
 
-Este projeto foi criado utilizando o framework Laravel em sua versão 9.
-Consiste em um sistema de assinaturas recorrentes para uma rede de mercados.
+- Este projeto foi criado utilizando o framework Laravel em sua versão 9.
+- Consiste em um sistema de assinaturas recorrentes para uma rede de supermercados.
+- O propósito deste sistema não é comercial, somente um projeto pessoal a nível de aprendizado \o/.
 
 ## Preparação
 
