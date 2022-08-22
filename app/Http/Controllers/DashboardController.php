@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\SignatureRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -30,7 +31,14 @@ class DashboardController extends Controller
     {}
 
     public function update(Request $request, $id)
-    {}
+    {
+        $signature = $this->signatureRepository->find($id);
+        $data = $request->only('fgstatus');
+        $data['user_id'] = Auth::id();
+        $signature->update($data);
+
+        return redirect()->route('dashboard.index');
+    }
 
     public function destroy($id)
     {}

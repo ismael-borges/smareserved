@@ -20,9 +20,14 @@
                     @endif
                     @foreach($signatures['data'] as $signature)
                         <div style="background-color: #f9f9f9;" class="mt-5 mr-2 block rounded-lg shadow-lg bg-white max-w-sm text-center">
-                            <div class="flex justify-center py-3 px-6 border-b border-gray-300">
+                            <div class="flex justify-between py-3 px-6 border-b border-gray-300">
                                 <div>
                                     Assinatura #{{$signature->id}}
+                                </div>
+                                <div>
+                                    <a href="#" onclick="handleClick(event, {{$signature->id}}, {{$signature->fgstatus}})" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        {{$signature->fgstatus === 1 ? 'Desativar' : 'Ativar'}}
+                                    </a>
                                 </div>
                             </div>
                             <div class="p-6">
@@ -42,7 +47,7 @@
                                 </div>
                                 <div>
                                     <p>Próxima entrega</p>
-                                    <small>{{$signature->dtnextexecution}}</small>
+                                    <small>{{ Carbon\Carbon::parse($signature->dtnextexecution)->format('d/m/Y') }}</small>
                                 </div>
                             </div>
                             <div class="flex justify-between py-3 px-6 border-t border-gray-300 text-gray-600">
@@ -64,10 +69,8 @@
     </div>
 
     <script>
-        function handleChangeToggle(event, obj, id, status) {
+        function handleClick(event, id, status) {
             event.preventDefault();
-
-            console.log(obj, id, status);
 
             if(status === 1) {
                 document.getElementById('fgstatus').value = 2;
@@ -76,7 +79,7 @@
             }
 
             let form = document.getElementById('form-signature');
-            form.action = `signature/${id}`;
+            form.action = `dashboard/${id}`;
             form.submit();
         }
     </script>

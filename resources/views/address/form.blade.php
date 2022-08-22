@@ -26,7 +26,7 @@
                         <div class="grid grid-cols-4">
                             <div class="mb-6">
                                 <label for="nickname" class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">
-                                    Apelido do endereço <span style="color: red">*</span>
+                                    Apelido <span style="color: red">*</span>
                                 </label>
                                 <input type="text" id="nickname" name="nickname" value="{{ old('nickname', optional($address)->nickname) }}"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
