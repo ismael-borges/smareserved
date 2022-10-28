@@ -8,23 +8,45 @@
 
 ## Preparação
 
-- Instalar o docker
-- Instalar Mysql
+- Possui o docker instalado
+- Possuir Mysql server
 - Criar uma base de dados chamada smareserved
 - Configure o .env
 
 ## Rodando o projeto
 
-- Após clonar execute sail composer install para instalar as dependências 
-- Execute o comando sail artisan migrate
-- Execute o comando sail artisan db:seed
-- Execute o comando sail up
-- Execute o comando npm run dev
+- Após clonar execute o seguinte comando
+```
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+```
+- Execute o comando para gerar as tabelas no banco de dados
+```
+sail artisan migrate
+```
+- Execute o comando para gerar o usuário para acessar o sistema
+```
+sail artisan db:seed
+```
+- Execute o comando para subir o ambiente
+```
+sail up
+```
+- Execute o comando para subir a parte do front-end da aplicação
+```
+npm run dev
+```
 - Após rodar o seed você pode acessar o sistema com os seguintes dados:
 - User: dev@moat.ai
 - Pass: 123456789
 
 ## Bibliotecas externas utilizadas
 
-- [kitloong](https://github.com/kitloong/laravel-migrations-generator)
-- [krlove](https://github.com/krlove/eloquent-model-generator)
+- [kitloong](https://github.com/kitloong/laravel-migrations-generator) -
+Utilizada para gerar as migrations a partir da leitura base de dados
+- [krlove](https://github.com/krlove/eloquent-model-generator) -
+Utilizada para gerar as models a partir da base de dados
